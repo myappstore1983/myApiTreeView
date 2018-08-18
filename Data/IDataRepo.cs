@@ -14,9 +14,9 @@ namespace myApiTreeView.API.Data
        
          Task<Folder> GetFolder(int? parentId);
 
-         Task<List<Folder>> GetRootFolders();
+          Task<List<Folder>> GetRootFolders();
 
-         List<Folder> GetAllFolders(List<Folder> list);
+         List<Folder> GetAllFolders(List<Folder> folders,ref List<TestCase> testcases);
 
          Task<TestCase> GetTestCase(int testCaseId);
 

@@ -12,9 +12,9 @@ namespace myApiTreeView.Services
     
          Task<Folder> GetFolder(int? parentFolderId);
 
-         Task<List<Folder>> GetRootFolders();
+          Task<List<Folder>> GetRootFolders();
 
-         List<Folder> GetAllFolders(List<Folder> list);
+         List<Folder> GetAllFolders(List<Folder> list,ref List<TestCase> testcases);
 
     }
 }

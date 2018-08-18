@@ -8,6 +8,8 @@ using myApiTreeView.API.Data;
 using myApiTreeView.Models;
 using Newtonsoft.Json;
 using myApiTreeView.Services;
+using AutoMapper;
+using System.Net;
 
 namespace myApiTreeView.Controllers
 {
@@ -17,28 +19,47 @@ namespace myApiTreeView.Controllers
     {
         private IFolderService _folderService = null;
         private ITestCaseService _testCaseService = null;
-        public TreeViewController(IFolderService folderService,ITestCaseService testCaseService)
+
+        private readonly IMapper _mapper;
+        public TreeViewController(IFolderService folderService,ITestCaseService testCaseService,IMapper mapper)
         {
              _folderService = folderService;
              _testCaseService = testCaseService;
+             _mapper = mapper;
         }
       
         [HttpGet]
         public ActionResult<IEnumerable<FolderDto>> Get()
         {
+            List<TestCase> testcases = new List<TestCase>();
             List<Folder> rootFolders = _folderService.GetRootFolders().Result;
-            return Content(JsonConvert.SerializeObject(
-                new { 
-                    TreeView = _folderService.GetAllFolders(rootFolders) },Formatting.Indented),"application/json"
-                    );
+            _folderService.GetAllFolders(rootFolders,ref testcases);
+            return Ok(rootFolders);
+        } 
+
+         [HttpGet("{id}")]
+        public ActionResult<IEnumerable<TestCase>> GetTestCasesInsideFolder(int id)
+        {
+            List<Folder> folders = new List<Folder>();
+            List<TestCase> testcases = new List<TestCase>();
+          
+            Folder selectedFolder = _folderService.GetFolder(id).Result;
+            folders.Add(selectedFolder);
+            _folderService.GetAllFolders(folders,ref testcases);
+
+            var testCasesResult =_mapper.Map<IEnumerable<DtoTestCase>>(testcases);
+            return Ok(testCasesResult);
         } 
      
-        [HttpPost("Add")]
+        [HttpPost]
         [ProducesResponseType(201, Type = typeof(TestCase))]
         [ProducesResponseType(400)]
-        public void AddTestCase([FromBody] TestCase testCase)
-        {     
-           _testCaseService.AddTestCase(testCase);
+        public  void Post([FromBody]DtoTestCase testCase)
+        {    
+          
+           var testCaseObj =_mapper.Map<TestCase>(testCase); 
+           _testCaseService.AddTestCase(testCaseObj);
+           
         }
 
         [HttpDelete("{id}")]
@@ -47,7 +68,8 @@ namespace myApiTreeView.Controllers
         public void DeleteTestCase(int id)
         {
             var testcase = _testCaseService.GetTestCase(id).Result;
-           _testCaseService.DeleteTestCase(testcase);
+            if(testcase!=null)
+            _testCaseService.DeleteTestCase(testcase);
         }
 
      #region "Unused methods"

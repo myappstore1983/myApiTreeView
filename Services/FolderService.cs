@@ -38,9 +38,9 @@ namespace myApiTreeView.Services
              }
         }
 
-        public List<Folder> GetAllFolders(List<Folder> foldersList)
+        public List<Folder> GetAllFolders(List<Folder> foldersList,ref List<TestCase> testcases)
         {
-            return _repo.GetAllFolders(foldersList);
+            return _repo.GetAllFolders(foldersList,ref testcases);
         }
 
         public Task<Folder> GetFolder(int? parentFolderId)
