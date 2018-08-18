@@ -1,0 +1,38 @@
+[
+    {
+      "ParentFolderId": 0,
+      "name": "FolderDepth0"
+    },
+    {
+      "ParentFolderId": 1,
+      "name": "Folder1"
+    },
+    {
+      "ParentFolderId": 2,
+      "name": "Folder2"
+    },
+    {
+      "ParentFolderId": 3,
+      "name": "Folder3"
+    },
+    {
+      "ParentFolderId": 2,
+      "name": "Folder4"
+    },
+    {
+      "ParentFolderId": 2,
+      "name": "Folder5"
+    },
+    {
+      "ParentFolderId": 4,
+      "name": "Folder6"
+    },
+    {
+      "ParentFolderId": 4,
+      "name":  "Folder7"
+    },
+    {
+      "ParentFolderId": 8,
+      "name":  "Folder8"
+    }
+  ]

@@ -1,0 +1,14 @@
+C:\cyara\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.csprojAssemblyReference.cache
+C:\cyara\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.csproj.CoreCompileInputs.cache
+C:\cyara\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.AssemblyInfoInputs.cache
+C:\cyara\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.AssemblyInfo.cs
+C:\cyara\myApiTreeView\bin\Debug\netcoreapp2.1\myApiTreeView.deps.json
+C:\cyara\myApiTreeView\bin\Debug\netcoreapp2.1\myApiTreeView.runtimeconfig.json
+C:\cyara\myApiTreeView\bin\Debug\netcoreapp2.1\myApiTreeView.runtimeconfig.dev.json
+C:\cyara\myApiTreeView\bin\Debug\netcoreapp2.1\myApiTreeView.dll
+C:\cyara\myApiTreeView\bin\Debug\netcoreapp2.1\myApiTreeView.pdb
+C:\cyara\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.dll
+C:\cyara\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.pdb
+C:\cyara\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.RazorAssemblyInfo.cache
+C:\cyara\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.RazorAssemblyInfo.cs
+C:\cyara\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.RazorTargetAssemblyInfo.cache
