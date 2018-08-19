@@ -1,37 +1,45 @@
-using myApiTreeView.Models;
-using myApiTreeView.API.Dtos;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+using AutoMapper;
 using myApiTreeView.API.Data;
-using System.Linq;
+using myApiTreeView.API.Dtos;
+using myApiTreeView.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace myApiTreeView.Services
 {
     public class TestCaseService : ITestCaseService
     {
-       private readonly IDataRepo _repo;
+        private readonly IDataRepo _repo;
 
         public TestCaseService(IDataRepo repo)
         {
             _repo = repo;
         }
 
-        public void AddTestCase(TestCase testcase)
+        public async Task<bool> AddTestCase(TestCaseDto testCaseDto)
         {
-            _repo.Add<TestCase>(testcase);
-            _repo.SaveAll();
+            var testCase = Mapper.Map<TestCase>(testCaseDto);
+            _repo.Add<TestCase>(testCase);
+            return await _repo.SaveAll();
         }
 
-        public void DeleteTestCase(TestCase testcase)
+        public async Task DeleteTestCase(TestCaseDto testCaseDto)
         {
-            _repo.Delete<TestCase>(testcase);
-            _repo.SaveAll();
+            var testCase = Mapper.Map<TestCase>(testCaseDto);
+            _repo.Delete<TestCase>(testCase);
+            await _repo.SaveAll();
         }
 
-        public async Task<TestCase> GetTestCase(int testCaseId)
-        {            
-             return await _repo.GetTestCase(testCaseId);                             
+        public async Task<TestCaseDto> GetTestCase(int testCaseId)
+        {
+            var testCase = await _repo.GetTestCase(testCaseId);
+            return Mapper.Map<TestCaseDto>(testCase);
         }
-
+        
+        public async Task<List<TestCaseDto>> GetTestCases(int folderId)
+        {
+            var testcases = await _repo.GetTestCases(folderId);
+            return Mapper.Map<List<TestCaseDto>>(testcases);
+        }
     }
 }

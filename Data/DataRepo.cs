@@ -15,43 +15,44 @@ namespace myApiTreeView.API.Data
         }
         public void Add<T>(T entity) where T : class
         {
-             _context.Add(entity);
+            _context.Add(entity);
         }
 
         public void Delete<T>(T entity) where T : class
         {
-             _context.Remove(entity);
+            _context.Remove(entity);
         }
 
-         public async Task<bool> SaveAll()
+        public async Task<bool> SaveAll()
         {
             return await _context.SaveChangesAsync() > 0;
-        }      
-
-        public async Task<Folder> GetFolder(int? parentFolderId)
-        {
-             return await  _context.folders.Include(x => x.SubFolders)
-                            .Where(x => x.FolderId == parentFolderId).FirstOrDefaultAsync();
-                              
         }
 
-        public  List<Folder> GetAllFolders(List<Folder> folders,ref List<TestCase> testcases)
+        public async Task<Folder> GetFolderById(int? folderId)
         {
-             int i = 0;
-            List<Folder> foldersList = new List<Folder>();
-           
+            return await _context.folders.Include(y => y.SubFolders)
+                           .Where(x => x.FolderId == folderId).FirstOrDefaultAsync();
 
-            if(folders.Count > 0)
+        }
+
+
+        public List<Folder> GetAllFolders(List<Folder> folders, ref List<TestCase> testcases)
+        {
+            int i = 0;
+            List<Folder> foldersList = new List<Folder>();
+
+
+            if (folders.Count > 0)
             {
                 foldersList.AddRange(folders);
             }
 
-            foreach(Folder x in folders)
+            foreach (Folder x in folders)
             {
                 Folder folder = _context.folders.Include(y => y.SubFolders).Include(t => t.TestCases)
                                 .Where(f => f.FolderId == x.FolderId)
-                                .Select(f => new Folder { FolderId = f.FolderId, Name = f.Name, ParentFolderId = f.ParentFolderId, SubFolders = f.SubFolders,TestCases = f.TestCases }).First();
-                if(folder.SubFolders == null)
+                                .Select(f => new Folder { FolderId = f.FolderId, Name = f.Name, ParentFolderId = f.ParentFolderId, SubFolders = f.SubFolders, TestCases = f.TestCases }).First();
+                if (folder.SubFolders == null)
                 {
                     i++;
                     continue;
@@ -62,25 +63,44 @@ namespace myApiTreeView.API.Data
                     testcases.AddRange(folder.TestCases);
                 }
                 List<Folder> subfolder = folder.SubFolders.ToList();
-                folder.SubFolders = GetAllFolders(subfolder,ref testcases);
+                folder.SubFolders = GetAllFolders(subfolder, ref testcases);
                 foldersList[i] = folder;
                 i++;
             }
-            
-           
-            return   foldersList;
+
+
+            return foldersList;
         }
 
-        public Task<List<Folder>> GetRootFolders()
+        public async Task<List<Folder>> GetRootFolders()
         {
-           return _context.folders.Include(x => x.SubFolders)
-                                .Where(x => x.ParentFolderId == null)
-                                .Select(f => new Folder { FolderId = f.FolderId, Name = f.Name, 
-                                ParentFolderId = f.ParentFolderId, SubFolders = f.SubFolders }).ToListAsync();
+            return await _context.folders.Include(x => x.SubFolders)
+                                 .Where(x => x.ParentFolderId == null)
+                                 .Select(f => new Folder
+                                 {
+                                     FolderId = f.FolderId,
+                                     Name = f.Name,
+                                     ParentFolderId = f.ParentFolderId,
+                                     SubFolders = f.SubFolders
+                                 }).ToListAsync();
         }
         public async Task<TestCase> GetTestCase(int testCaseId)
         {
-           return await  _context.testCases.Where(x => x.TestCaseId == testCaseId).FirstOrDefaultAsync(); 
+            return await _context.testCases.Where(x => x.TestCaseId == testCaseId).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<TestCase>> GetTestCases(int folderId)
+        {
+            var folder = await this.GetFolderById(folderId);
+            if (folder != null)
+            {
+                var folders = new List<Folder>();
+                folders.Add(folder);
+                var testCases = new List<TestCase>();
+                this.GetAllFolders(folders, ref testCases);
+                return testCases;
+            }
+            return null;
         }
 
 
@@ -113,7 +133,7 @@ namespace myApiTreeView.API.Data
         //     return   lists;
         // }
 
-       
+
 
     }
 }

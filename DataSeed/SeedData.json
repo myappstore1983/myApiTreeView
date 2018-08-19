@@ -1,38 +1,37 @@
 [
-    {
-      "ParentFolderId": 0,
-      "name": "FolderDepth0"
-    },
-    {
-      "ParentFolderId": 1,
-      "name": "Folder1"
-    },
-    {
-      "ParentFolderId": 2,
-      "name": "Folder2"
-    },
-    {
-      "ParentFolderId": 3,
-      "name": "Folder3"
-    },
-    {
-      "ParentFolderId": 2,
-      "name": "Folder4"
-    },
-    {
-      "ParentFolderId": 2,
-      "name": "Folder5"
-    },
-    {
-      "ParentFolderId": 4,
-      "name": "Folder6"
-    },
-    {
-      "ParentFolderId": 4,
-      "name":  "Folder7"
-    },
-    {
-      "ParentFolderId": 8,
-      "name":  "Folder8"
-    }
-  ]
+  {
+    "ParentFolderId": null,
+    "FolderId": 0,
+    "name": "Root0"
+  },
+  {
+    "ParentFolderId": 0,
+    "FolderId": 1,
+    "name": "Folder1"
+  },
+  {
+    "ParentFolderId": 0,
+    "FolderId": 2,
+    "name": "Folder2"
+  },
+  {
+    "ParentFolderId": 1,
+    "FolderId": 101,
+    "name": "Folder101"
+  },
+  {
+    "ParentFolderId": 1,
+    "FolderId": 102,
+    "name": "Folder102"
+  },
+  {
+    "ParentFolderId": 2,
+    "FolderId": 201,
+    "name": "Folder201"
+  },
+  {
+    "ParentFolderId": 2,
+    "FolderId": 202,
+    "name": "Folder202"
+  }
+]

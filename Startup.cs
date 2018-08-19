@@ -41,7 +41,6 @@ namespace myApiTreeView
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
             //.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddAutoMapper();
 
             services.AddScoped<IDataRepo,DataRepo>();
             services.AddScoped<IFolderService,FolderService>();
@@ -90,7 +89,7 @@ namespace myApiTreeView
                 // c.RoutePrefix = string.Empty;
              });
 
-            //seeder.SeedFolders();
+           // seeder.SeedFolders();
             app.UseStatusCodePagesWithReExecute("/Errors/Index", "?statusCode={0}");
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
             app.UseMvc();

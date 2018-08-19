@@ -12,3 +12,16 @@ C:\cyara\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.pdb
 C:\cyara\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.RazorAssemblyInfo.cache
 C:\cyara\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.RazorAssemblyInfo.cs
 C:\cyara\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.RazorTargetAssemblyInfo.cache
+D:\dotnet\myApiTreeView\bin\Debug\netcoreapp2.1\myApiTreeView.deps.json
+D:\dotnet\myApiTreeView\bin\Debug\netcoreapp2.1\myApiTreeView.runtimeconfig.json
+D:\dotnet\myApiTreeView\bin\Debug\netcoreapp2.1\myApiTreeView.runtimeconfig.dev.json
+D:\dotnet\myApiTreeView\bin\Debug\netcoreapp2.1\myApiTreeView.dll
+D:\dotnet\myApiTreeView\bin\Debug\netcoreapp2.1\myApiTreeView.pdb
+D:\dotnet\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.csproj.CoreCompileInputs.cache
+D:\dotnet\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.RazorAssemblyInfo.cache
+D:\dotnet\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.RazorAssemblyInfo.cs
+D:\dotnet\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.AssemblyInfoInputs.cache
+D:\dotnet\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.AssemblyInfo.cs
+D:\dotnet\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.RazorTargetAssemblyInfo.cache
+D:\dotnet\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.dll
+D:\dotnet\myApiTreeView\obj\Debug\netcoreapp2.1\myApiTreeView.pdb

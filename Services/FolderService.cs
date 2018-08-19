@@ -7,7 +7,6 @@ using myApiTreeView.Models;
 
 namespace myApiTreeView.Services
 {
-
     public class FolderService : IFolderService
     {
         private readonly IDataRepo _repo;
@@ -17,40 +16,50 @@ namespace myApiTreeView.Services
             _repo = repo;
         }
 
-        public void AddFolder(Folder folder)
-        {
-               Folder folderObject = new Folder();
-                if(folder.ParentFolderId == 0)
-                {
-                    folderObject.FolderId =  folder.FolderId;
-                    folderObject.Name = $"Root"+folder.ParentFolderId;
-                    _repo.Add(folderObject);
-                    _repo.SaveAll();
-                } 
-                else
-                {
-                    Folder parentFolderObject = _repo.GetFolder(folder.ParentFolderId).Result;
-                    folderObject.Name = folder.Name;
-                    folderObject.FolderId = folder.FolderId;
-                    parentFolderObject.SubFolders.Add(folderObject);
-                   _repo.SaveAll();
-                       
-             }
-        }
-
-        public List<Folder> GetAllFolders(List<Folder> foldersList,ref List<TestCase> testcases)
-        {
-            return _repo.GetAllFolders(foldersList,ref testcases);
-        }
-
-        public Task<Folder> GetFolder(int? parentFolderId)
-        {
-           return _repo.GetFolder(parentFolderId);
-        }
-
         public Task<List<Folder>> GetRootFolders()
         {
             return _repo.GetRootFolders();
         }
+
+        public List<Folder> GetAllFolders(List<Folder> foldersList)
+        {
+            List<TestCase> testcases = new List<TestCase>();
+            return _repo.GetAllFolders(foldersList, ref testcases);
+        }
+        public void DeleteFolder(Folder folder)
+        {
+            _repo.Delete<Folder>(folder);
+            _repo.SaveAll();
+        }
+
+        public Task<Folder> GetFolderById(int folderId)
+        {
+            return _repo.GetFolderById(folderId);
+        }
+
+        public void AddFolder(Folder folder)
+        {
+            Folder parentFolderObject = _repo.GetFolderById(folder.ParentFolderId).Result;
+            Folder folderObject = _repo.GetFolderById(folder.FolderId).Result;
+            //if ( parentFolderObject != null) // Folder aleady exists with this FolderId, Skip this record
+            //{
+            //    _repo.Add(folder);
+            //    _repo.SaveAll();
+            //}
+            
+                if ((folderObject == null && parentFolderObject != null) || folder.FolderId == 0 )
+                {
+                    _repo.Add(folder);
+                    _repo.SaveAll();
+                }
+                else
+                {
+                    parentFolderObject.SubFolders.Add(folder);
+                    _repo.SaveAll();
+
+                }
+            
+        }
+
     }
 }

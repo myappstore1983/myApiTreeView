@@ -18,8 +18,7 @@ namespace myApiTreeView.Migrations
 
             modelBuilder.Entity("myApiTreeView.Models.Folder", b =>
                 {
-                    b.Property<int>("FolderId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("FolderId");
 
                     b.Property<string>("Name");
 

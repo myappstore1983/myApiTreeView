@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using myApiTreeView.API.Dtos;
 using myApiTreeView.Models;
 
 namespace myApiTreeView.Services
 {
     public interface ITestCaseService
     {
-        Task<TestCase> GetTestCase(int testCaseId);
+        Task<TestCaseDto> GetTestCase(int testCaseId);
 
-        void AddTestCase(TestCase testcase);
+        Task<bool> AddTestCase(TestCaseDto testCaseDto);
 
-        void DeleteTestCase(TestCase testcase);
+        Task DeleteTestCase(TestCaseDto testCaseDto);
+
+        Task<List<TestCaseDto>> GetTestCases(int folderId);
     }
 }
